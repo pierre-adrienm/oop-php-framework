@@ -7,11 +7,19 @@ use App\Validation\Validator;
 
 class UserController extends Controller {
 
+    /**
+     * Summary of login
+     * @return void
+     */
     public function login()
     {
         return $this->view('auth.login');
     }
 
+    /**
+     * Summary of loginPost
+     * @return void
+     */
     public function loginPost()
     {
         $validator = new Validator($_POST);
@@ -22,7 +30,7 @@ class UserController extends Controller {
 
         if ($errors) {
             $_SESSION['errors'][] = $errors;
-            header('Location: /login');
+            header('Location:'.HREF_ROOT.' login');
             exit;
         }
 
@@ -30,16 +38,20 @@ class UserController extends Controller {
 
         if (password_verify($_POST['password'], $user->password)) {
             $_SESSION['auth'] = (int) $user->admin;
-            return header('Location: /admin/posts?success=true');
+            return header('Location: '.HREF_ROOT.'admin/posts?success=true');
         } else {
-            return header('Location: /login');
+            return header('Location: '.HREF_ROOT.'login');
         }
     }
 
+    /**
+     * Summary of logout
+     * @return void
+     */
     public function logout()
     {
         session_destroy();
 
-        return header('Location: /');
+        return header('Location:'.HREF_ROOT.' /');
     }
 }

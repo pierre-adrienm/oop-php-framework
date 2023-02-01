@@ -7,6 +7,10 @@ class Tag extends Model
 
     protected $table = 'tags';
 
+    /**
+     * Summary of getPosts
+     * @return mixed
+     */
     public function getPosts()
     {
         return $this->query("

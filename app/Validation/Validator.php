@@ -7,11 +7,20 @@ class Validator {
     private $data;
     private $errors;
 
+    /**
+     * Summary of __construct
+     * @param array $data
+     */
     public function __construct(array $data)
     {
         $this->data = $data;
     }
 
+    /**
+     * Summary of validate
+     * @param array $rules
+     * @return array|null
+     */
     public function validate(array $rules): ?array
     {
         foreach ($rules as $name => $rulesArray) {
@@ -34,6 +43,12 @@ class Validator {
         return $this->getErrors();
     }
 
+    /**
+     * Summary of required
+     * @param string $name
+     * @param string $value
+     * @return void
+     */
     private function required(string $name, string $value)
     {
         $value = trim($value);
@@ -43,6 +58,13 @@ class Validator {
         }
     }
 
+    /**
+     * Summary of min
+     * @param string $name
+     * @param string $value
+     * @param string $rule
+     * @return void
+     */
     private function min(string $name, string $value, string $rule)
     {
         preg_match_all('/(\d+)/', $rule, $matches);
@@ -53,6 +75,10 @@ class Validator {
         }
     }
 
+    /**
+     * Summary of getErrors
+     * @return array|null
+     */
     private function getErrors(): ?array
     {
         return $this->errors;

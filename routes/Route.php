@@ -12,10 +12,17 @@ class Route {
 
     public function __construct($path, $action)
     {
-        $this->path = trim($path, '/');
+        $this->path = trim($path, '/');        
         $this->action = $action;
     }
 
+    /**
+     * Summary of matches
+     * Matches renvoie true si le l'url est une route valable
+     * false si elle n'est pas valable
+     * @param string $url
+     * @return bool
+     */
     public function matches(string $url)
     {
         $path = preg_replace('#:([\w]+)#', '([^/]+)', $this->path);

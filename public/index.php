@@ -3,10 +3,16 @@
 use Router\Router;
 use App\Exceptions\NotFoundException;
 
+
 require '../vendor/autoload.php';
+//Indiquer la racine de votre site ici HREF_ROOT. Si votre site en localhost est à la racine indiquer /
+define('HREF_ROOT', 'http://127.0.0.1/oop-php-framework/' );
+// Not in use now. J'ai utilisé cette constante pour trouvé des bugs dans le les formulaire. Est peut remplacer HREF_ROOT
+define('VIEWS_FORM_ROOT', '../../../' );
 
 define('VIEWS', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR);
-define('SCRIPTS', dirname($_SERVER['SCRIPT_NAME']) . DIRECTORY_SEPARATOR);
+//define('SCRIPTS', dirname($_SERVER['SCRIPT_NAME']) . DIRECTORY_SEPARATOR); // Code original
+define('SCRIPTS', HREF_ROOT.'public/');
 define('DB_NAME', 'myapp');
 define('DB_HOST', '127.0.0.1');
 define('DB_USER', 'root');
