@@ -10,6 +10,11 @@ class Route {
     public $action;
     public $matches;
 
+    /**
+     * Summary of __construct
+     * @param mixed $path
+     * @param mixed $action
+     */
     public function __construct($path, $action)
     {
         $this->path = trim($path, '/');        
@@ -36,6 +41,10 @@ class Route {
         }
     }
 
+    /**
+     * Summary of execute
+     * @return mixed
+     */
     public function execute()
     {
         $params = explode('@', $this->action);

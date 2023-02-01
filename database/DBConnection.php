@@ -12,6 +12,13 @@ class DBConnection {
     private $password;
     private $pdo;
 
+    /**
+     * Summary of __construct
+     * @param string $dbname
+     * @param string $host
+     * @param string $username
+     * @param string $password
+     */
     public function __construct(string $dbname, string $host, string $username, string $password)
     {
         $this->dbname = $dbname;
@@ -20,6 +27,10 @@ class DBConnection {
         $this->password = $password;
     }
 
+    /**
+     * Summary of getPDO
+     * @return PDO
+     */
     public function getPDO(): PDO
     {
         return $this->pdo ?? $this->pdo = new PDO("mysql:dbname={$this->dbname};host={$this->host}", $this->username, $this->password, [
