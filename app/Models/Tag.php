@@ -19,4 +19,14 @@ class Tag extends Model
             WHERE pt.tag_id = ?
         ", [$this->id]);
     }
+
+    /**
+     * Summary of createTags
+     * @param string $name
+     * @return mixed
+     */
+    public function createTags(string $name)
+    {
+        return $this->query("INSERT INTO tags VALUES ({$name})");
+    }
 }
