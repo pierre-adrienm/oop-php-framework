@@ -35,6 +35,8 @@ $router->post('/admin/posts/create', 'App\Controllers\Admin\PostController@creat
 $router->post('/admin/posts/delete/:id', 'App\Controllers\Admin\PostController@destroy');
 $router->get('/admin/posts/edit/:id', 'App\Controllers\Admin\PostController@edit');
 $router->post('/admin/posts/edit/:id', 'App\Controllers\Admin\PostController@update');
+$router->get('/admin/tags/create', 'App\Controllers\Admins\PostController@create');
+$router->post('/admin/tags/create', 'App\Controllers\Admins\PostController@createTags');
 
 try {
     $router->run();
