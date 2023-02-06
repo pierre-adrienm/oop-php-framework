@@ -8,6 +8,16 @@ use App\Models\Post;
 
 class TagController extends Controller{
 
+
+    public function index()
+    {
+        $this->isAdmin();
+
+        $tags = (new Tag($this->getDB()))->all();
+
+        return $this->view('admin.tags.index', compact('tags'));
+    }
+
     /**
      * Summary of Create
      * @return void
