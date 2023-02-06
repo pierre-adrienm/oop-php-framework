@@ -36,7 +36,7 @@ class TagController extends Controller{
         $result = $post->create($_POST, $tags);
 
         if ($result) {
-            return header('Location:'.HREF_ROOT.'admin/posts');
+            return header('Location:'.HREF_ROOT.'admin/tag');
         }
     }
 
