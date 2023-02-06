@@ -39,7 +39,7 @@ class TagController extends Controller{
     {
         $this->isAdmin();
 
-        $tag = new Post($this->getDB());
+        $tag = new Tag($this->getDB());
 
         $tags = array_pop($_POST);
 
