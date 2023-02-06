@@ -5,7 +5,7 @@
 <?php endif ?>
 
 <a href="<?= HREF_ROOT ?>admin/posts/create" class="btn btn-success my-3">Créer un nouvel article</a>
-<a href="<?= HREF_ROOT ?>admin/tags/create" class="btn btn-success my-3">Administation des tags</a>
+<a href="<?= HREF_ROOT ?>admin/tags" class="btn btn-success my-3">Administation des tags</a>
 
 <table class="table">
     <thead>

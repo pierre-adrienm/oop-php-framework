@@ -29,11 +29,11 @@ class TagController extends Controller{
     {
         $this->isAdmin();
 
-        $post = new Post($this->getDB());
+        $tag = new Post($this->getDB());
 
         $tags = array_pop($_POST);
 
-        $result = $post->create($_POST, $tags);
+        $result = $tag->create($_POST, $tags);
 
         if ($result) {
             return header('Location:'.HREF_ROOT.'admin/tag');
