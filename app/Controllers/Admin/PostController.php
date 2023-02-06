@@ -54,6 +54,24 @@ class PostController extends Controller {
     }
 
     /**
+     * Summary of createTags
+     * @return void
+     */
+    public function createTag()
+    {
+        $this->isAdmin();
+
+        $tag = new Tag($this->getDB());
+
+        $tags = array_pop($_POST);
+
+        $result = $tag->create($_POST, $tags);
+
+        if($result){
+            return header('Location:' . HREF_ROOT . 'admin/tags');
+        }
+    }
+    /**
      * Summary of edit
      * @param int $id
      * @return void
