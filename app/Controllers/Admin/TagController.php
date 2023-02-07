@@ -35,7 +35,7 @@ class TagController extends Controller{
      * Summary of CreateTag
      * @return void
      */
-    public function CreateTag()
+    public function createTag()
     {
         $this->isAdmin();
 
@@ -72,7 +72,7 @@ class TagController extends Controller{
      * @param int $id
      * @return void
      */
-    public function UdpateTag(int $id)
+    public function update(int $id)
     {
         $this->isAdmin();
 
@@ -94,7 +94,7 @@ class TagController extends Controller{
      * @param int $id
      * @return void
      */
-    public function DeleteTag(int $id)
+    public function destroy(int $id)
     {
         $this->isAdmin();
 

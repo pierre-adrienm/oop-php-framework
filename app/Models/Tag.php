@@ -39,4 +39,16 @@ class Tag extends Model
     {
         return $this->query("UPDATE TABLE tags SET non={$name} where id=?",[$this->id]);
     }
+
+    /**
+     * Summary of getButton
+     * @return string
+     */
+    public function getButton(): string
+    {
+        return '<a href="'.HREF_ROOT.'tags/'.$this->id.'" class="btn btn-primary">Lire l article</a>';
+        // return <<<HTML
+        // <a href="http://localhost/oop-php-framework/posts/$this->id" class="btn btn-primary">Lire l'article</a>
+        // HTML;
+    }
 }
