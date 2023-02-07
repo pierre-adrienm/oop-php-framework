@@ -20,6 +20,11 @@ class Tag extends Model
         ", [$this->id]);
     }
 
+    public function getTag()
+    {
+        return $this->query("SELECT * FROM tags",[$this->id]);
+    }
+
     /**
      * Summary of getButton
      * @return string

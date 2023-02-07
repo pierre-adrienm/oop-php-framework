@@ -19,8 +19,7 @@
         <?php foreach ($params['tags'] as $tags) : ?>
             <tr>
                 <th scope="row"><?= $tags->id ?></th>
-                <td><?= $tags->title ?></td>
-                <td><?= $tags->getCreatedAt() ?></td>
+                <td><?= $tags->nom ?></td>
                 <td>
                     <a href="<?= HREF_ROOT ?>admin/tags/edit/<?= $tags->id ?>" class="btn btn-warning">Modifier</a>
                     <form action="<?= HREF_ROOT ?>admin/tags/delete/<?= $tags->id ?>" method="POST" class="d-inline">
