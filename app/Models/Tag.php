@@ -29,4 +29,14 @@ class Tag extends Model
     {
         return $this->query("INSERT INTO tags VALUES ({$name})");
     }
+
+    /**
+     * Summary of updateTags
+     * @param string $name
+     * @return mixed
+     */
+    public function updateTags(string $name)
+    {
+        return $this->query("UPDATE TABLE tags SET non={$name} where id=?",[$this->id]);
+    }
 }
