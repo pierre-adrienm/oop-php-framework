@@ -21,26 +21,6 @@ class Tag extends Model
     }
 
     /**
-     * Summary of createTags
-     * @param string $name
-     * @return mixed
-     */
-    public function createTags(string $name)
-    {
-        return $this->query("INSERT INTO tags VALUES ({$name})");
-    }
-
-    /**
-     * Summary of updateTags
-     * @param string $name
-     * @return mixed
-     */
-    public function updateTags(string $name)
-    {
-        return $this->query("UPDATE TABLE tags SET non={$name} where id=?",[$this->id]);
-    }
-
-    /**
      * Summary of getButton
      * @return string
      */
