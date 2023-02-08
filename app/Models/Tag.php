@@ -28,18 +28,12 @@ class Tag extends Model
     /**
      * Summary of create
      * @param array $data
-     * @param array|null $relations
+     * @param mixed|null $relations
      * @return bool
      */
     public function create(array $data,  mixed $relations = null)
     {
-        var_dump($data);
         parent::create($data);
-
-        // $id = $this->db->getPDO()->lastInsertId();
-
-        // $stmt = $this->db->getPDO()->prepare("INSERT tags VALUES (?)");
-        // $stmt->execute();
 
         return true;
     }
@@ -51,6 +45,31 @@ class Tag extends Model
     public function getExcerpt(): string
     {
         return substr($this->content, 0, 200) . '...';
+    }
+
+    /**
+     * Summary of update
+     * @param int $id
+     * @param mixed $data
+     * @param array|null $relations
+     * @return bool
+     */
+    public function update(int $id, mixed $data, ?array $relations = null)
+    {
+        parent::update($id, $data);
+
+        // $stmt = $this->db->getPDO()->prepare("DELETE FROM post_tag WHERE post_id = ?");
+        // $result = $stmt->execute([$id]);
+
+        // foreach ($relations as $tagId) {
+        //     $stmt = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
+        //     $stmt->execute([$id, $tagId]);
+        // }
+
+        // if ($result) {
+            return true;
+        // }
+
     }
 
     /**
