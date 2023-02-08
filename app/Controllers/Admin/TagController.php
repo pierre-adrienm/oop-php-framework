@@ -76,13 +76,12 @@ class TagController extends Controller{
     {
         $this->isAdmin();
 
-        $tag = new Tag($this->getDB());
+        $tags = new Tag($this->getDB());
 
         // var_dump("PostController update:",$_POST);
-        $tags = array_pop($_POST);
        // var_dump("PostController update:",$_POST, $tags);
 
-        $result = $tag->update($id, $_POST, $tags);
+        $result = $tags->update($id, $_POST);
 
         if ($result) {
             return header('Location: '.HREF_ROOT.'admin/tags');
