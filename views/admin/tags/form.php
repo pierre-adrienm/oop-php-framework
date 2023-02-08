@@ -5,7 +5,7 @@ function submitPostLink()
 }
 </script>
 
-<h1><?= $params['tags']->title ?? 'Créer un nouvel tags' ?></h1>
+<h1><?= $params['post']->title ?? 'Créer un nouvel tags' ?></h1>
 
 <?php 
 // var_dump($_REQUEST);
