@@ -22,7 +22,7 @@ class TagController extends Controller{
      * Summary of Create
      * @return void
      */
-    public function Create()
+    public function create()
     {
         $this->isAdmin();
 
@@ -41,9 +41,9 @@ class TagController extends Controller{
 
         $tag = new Tag($this->getDB());
 
-        $tags = array_pop($_POST);
+        // $tags = array_pop($_POST);
 
-        $result = $tag->create($_POST, $tags);
+        $result = $tag->create($_POST);
 
         if ($result) {
             return header('Location:'.HREF_ROOT.'admin/tags');

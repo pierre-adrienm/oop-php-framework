@@ -20,9 +20,37 @@ class Tag extends Model
         ", [$this->id]);
     }
 
-    public function getTag()
+    public function getTags()
     {
         return $this->query("SELECT * FROM tags",[$this->id]);
+    }
+
+    /**
+     * Summary of create
+     * @param array $data
+     * @param array|null $relations
+     * @return bool
+     */
+    public function create(array $data,  mixed $relations = null)
+    {
+        var_dump($data);
+        parent::create($data);
+
+        // $id = $this->db->getPDO()->lastInsertId();
+
+        // $stmt = $this->db->getPDO()->prepare("INSERT tags VALUES (?)");
+        // $stmt->execute();
+
+        return true;
+    }
+
+    /**
+     * Summary of getExcerpt
+     * @return string
+     */
+    public function getExcerpt(): string
+    {
+        return substr($this->content, 0, 200) . '...';
     }
 
     /**
