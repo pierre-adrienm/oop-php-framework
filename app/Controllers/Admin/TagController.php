@@ -102,7 +102,7 @@ class TagController extends Controller{
         $result = $tag->destroy($id);
 
         if ($result) {
-            return header('Location: '.HREF_ROOT.'admin/posts');
+            return header('Location: '.HREF_ROOT.'admin/tags');
         }
     }
 }

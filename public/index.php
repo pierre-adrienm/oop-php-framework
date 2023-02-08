@@ -38,7 +38,7 @@ $router->post('/admin/posts/edit/:id', 'App\Controllers\Admin\PostController@upd
 
 $router->get('/admin/tags', 'App\Controllers\Admin\TagController@index');
 $router->get('/admin/tags/create', 'App\Controllers\Admin\TagController@create');
-$router->post('/admin/tags/create', 'App\Controllers\Admin\TagController@createTags');
+$router->post('/admin/tags/create', 'App\Controllers\Admin\TagController@createTag');
 $router->post('/admin/tags/delete/:id', 'App\Controllers\Admin\TagController@destroy');
 $router->get('/admin/tags/edit/:id', 'App\Controllers\Admin\TagController@edit');
 $router->post('/admin/tags/edit/:id', 'App\Controllers\Admin\TagController@update');
