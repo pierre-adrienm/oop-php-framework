@@ -58,17 +58,17 @@ class Tag extends Model
     {
         parent::update($id, $data);
 
-        // $stmt = $this->db->getPDO()->prepare("DELETE FROM post_tag WHERE post_id = ?");
-        // $result = $stmt->execute([$id]);
+        $stmt = $this->db->getPDO()->prepare("DELETE FROM tags WHERE id = ?");
+        $result = $stmt->execute([$id]);
 
         // foreach ($relations as $tagId) {
         //     $stmt = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
         //     $stmt->execute([$id, $tagId]);
         // }
 
-        // if ($result) {
+        if ($result) {
             return true;
-        // }
+        }
 
     }
 
