@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
 use App\Models\Tag;
-use App\Models\Post;
+
 
 class TagController extends Controller{
 
@@ -28,7 +28,7 @@ class TagController extends Controller{
 
         $tags = (new Tag($this->getDB()))->all();
 
-        return $this->view('admin.tags.form', compact('tags'));
+        return $this->view('admin.tags.form');
     }
 
     /**
@@ -60,7 +60,7 @@ class TagController extends Controller{
        // var_dump("Model edit:", $id);
         $this->isAdmin();
 
-        $tags = (new Tag($this->getDB()))->all();
+        $tags = (new Tag($this->getDB()))->findById($id);
         
         //var_dump("Model edit:", $post);
         //var_dump("Model edit:", $tags);

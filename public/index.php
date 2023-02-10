@@ -43,6 +43,7 @@ $router->post('/admin/tags/delete/:id', 'App\Controllers\Admin\TagController@des
 $router->get('/admin/tags/edit/:id', 'App\Controllers\Admin\TagController@edit');
 $router->post('/admin/tags/edit/:id', 'App\Controllers\Admin\TagController@update');
 
+
 try {
     $router->run();
 } catch (NotFoundException $e) {

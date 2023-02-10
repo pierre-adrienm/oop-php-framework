@@ -7,18 +7,6 @@ class Tag extends Model
 
     protected $table = 'tags';
 
-    /**
-     * Summary of getPosts
-     * @return mixed
-     */
-    public function getPosts()
-    {
-        return $this->query("
-            SELECT p.* FROM posts p
-            INNER JOIN post_tag pt ON pt.post_id = p.id
-            WHERE pt.tag_id = ?
-        ", [$this->id]);
-    }
 
     public function getTags()
     {
@@ -39,15 +27,6 @@ class Tag extends Model
     }
 
     /**
-     * Summary of getExcerpt
-     * @return string
-     */
-    public function getExcerpt(): string
-    {
-        return substr($this->content, 0, 200) . '...';
-    }
-
-    /**
      * Summary of update
      * @param int $id
      * @param mixed $data
@@ -58,17 +37,7 @@ class Tag extends Model
     {
         parent::update($id, $data);
 
-        $stmt = $this->db->getPDO()->prepare("DELETE FROM tags WHERE id = ?");
-        $result = $stmt->execute([$id]);
-
-        // foreach ($relations as $tagId) {
-        //     $stmt = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
-        //     $stmt->execute([$id, $tagId]);
-        // }
-
-        if ($result) {
-            return true;
-        }
+        return true;
 
     }
 
@@ -78,7 +47,7 @@ class Tag extends Model
      */
     public function getButton(): string
     {
-        return '<a href="'.HREF_ROOT.'tags/'.$this->id.'" class="btn btn-primary">Lire l article</a>';
+        return '<a href="'.HREF_ROOT.'tags/'.$this->id.'" class="btn btn-primary">Lire l tag</a>';
         // return <<<HTML
         // <a href="http://localhost/oop-php-framework/posts/$this->id" class="btn btn-primary">Lire l'article</a>
         // HTML;
