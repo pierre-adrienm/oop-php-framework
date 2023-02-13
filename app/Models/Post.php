@@ -65,15 +65,19 @@ class Post extends Model {
      */
     public function create(array $data, ?array $relations = null)
     {
+        // créer un post
         parent::create($data);
 
+        // attribuer un id puis le mettre sur le deriner de la liste
         $id = $this->db->getPDO()->lastInsertId();
 
+        // pour chaque relation  ajouter un lien avec le tag
         foreach ($relations as $tagId) {
             $stmt = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
             $stmt->execute([$id, $tagId]);
         }
 
+        // renvoie que c'est fait
         return true;
     }
 
@@ -86,16 +90,19 @@ class Post extends Model {
      */
     public function update(int $id, mixed $data, ?array $relations = null)
     {
+        // selectionne le post à modifier
         parent::update($id, $data);
 
         $stmt = $this->db->getPDO()->prepare("DELETE FROM post_tag WHERE post_id = ?");
         $result = $stmt->execute([$id]);
 
+        // pour chaque relation  à modifier un lien avec le tag
         foreach ($relations as $tagId) {
             $stmt = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
             $stmt->execute([$id, $tagId]);
         }
 
+        // si c'est executé envoyer que c'est fait
         if ($result) {
             return true;
         }

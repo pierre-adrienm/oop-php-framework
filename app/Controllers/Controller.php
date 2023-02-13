@@ -44,6 +44,7 @@ abstract class Controller {
      */
     protected function getDB()
     {
+        // retourne le résultat de la base de donnée
         return $this->db;
     }
 
@@ -53,6 +54,7 @@ abstract class Controller {
      */
     protected function isAdmin()
     {
+        // verifier la si c'est bien du connexion de compte administrateur
         if (isset($_SESSION['auth']) && $_SESSION['auth'] === 1) {
             return true;
         } else {
