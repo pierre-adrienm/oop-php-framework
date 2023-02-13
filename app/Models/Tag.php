@@ -13,6 +13,7 @@ class Tag extends Model
      */
     public function getTags()
     {
+        // retourne résultat de la séléction du tableau tags
         return $this->query("SELECT * FROM tags",[$this->id]);
     }
 
@@ -24,8 +25,10 @@ class Tag extends Model
      */
     public function create(array $data,  mixed $relations = null)
     {
+        // créer un tag
         parent::create($data);
 
+        // un fois effectuer envoie le résultat que c'est fait
         return true;
     }
 
@@ -38,8 +41,10 @@ class Tag extends Model
      */
     public function update(int $id, mixed $data, ?array $relations = null)
     {
+        // modifie un tag
         parent::update($id, $data);
 
+        // un fois effectuer envoie le résultat que c'est fait
         return true;
 
     }
