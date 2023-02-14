@@ -4,6 +4,7 @@ namespace App\Models;
 
 use DateTime;
 use App\Models\Tag;
+use App\Models\Media;
 
 class Post extends Model {
 
@@ -53,6 +54,24 @@ class Post extends Model {
         return $this->query("
             SELECT t.* FROM tags t
             INNER JOIN post_tag pt ON pt.tag_id = t.id
+            WHERE pt.post_id = ?
+        ", [$this->id]);
+    }
+
+    /**
+     * Summary of getMedia
+     * 
+     * A Remplacer par  Models/Media.php
+     * @return mixed
+     */
+    public function getMedia()
+    {
+        //  $media = new Media($this->db);
+
+        // return $tag->getPosts();
+        return $this->query("
+            SELECT t.* FROM media t
+            INNER JOIN post_media pt ON pt.med_id = t.id
             WHERE pt.post_id = ?
         ", [$this->id]);
     }
