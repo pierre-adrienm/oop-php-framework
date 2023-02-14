@@ -18,17 +18,26 @@ class Media extends Model
     }
 
     /**
-     *  Summary of create
-     *  @param array $data
-     *  @param mixed|null $relations
-     *  @return bool
+     * Summary of create
+     * @param array $data
+     * @param array|null $relations
+     * @return bool
      */
-    public function create(array $data,  mixed $relations = null)
+    public function create(array $data, ?array $relations = null)
     {
-        // créer un media
+        // créer un post
         parent::create($data);
 
-        // un fois effectuer envoie le résultat que c'est fait
+        // attribuer un id puis le mettre sur le deriner de la liste
+        $id = $this->db->getPDO()->lastInsertId();
+
+        // pour chaque relation  ajouter un lien avec le media
+        foreach ($relations as $mediaId) {
+            $stmt = $this->db->getPDO()->prepare("INSERT post_media (post_id, med_id) VALUES (?, ?)");
+            $stmt->execute([$id, $mediaId]);
+        }
+
+        // renvoie que c'est fait
         return true;
     }
 
