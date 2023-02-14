@@ -36,7 +36,20 @@ function submitPostLink()
             <?php endforeach ?>
         </select>
     </div>
-    
+    <div class="form-group">
+        <label for="media">Media de l'article</label>
+        <select multiple class="form-control" id="media" name="media[]">
+            <?php foreach ($params['media'] as $media) : ?>
+                <option value="<?= $media->id ?>"
+                <?php if (isset($params['post'])) : ?>
+                <?php foreach ($params['post']->getMedia() as $postMedia) {
+                    echo ($media->id === $postMedia->id) ? 'selected' : '';
+                }
+                ?>
+                <?php endif ?>><?= $media->name ?></option>
+            <?php endforeach ?>
+        </select>
+    </div>
     <button type="submit"  class="btn btn-primary"><?= isset($params['post']) ? "Enregistrer les modifications" : "Enregistrer mon article" ?></button>
     
     </form>
