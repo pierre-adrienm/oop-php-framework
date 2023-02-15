@@ -5,7 +5,7 @@
 <?php endif ?>
 
 <a href="<?= HREF_ROOT ?>admin/media/create" class="btn btn-success my-3">Créer un nouveau media</a>
-<a href="<?= HREF_ROOT ?>admin/post" class="btn btn-success my-3">Administation des post</a>
+<a href="<?= HREF_ROOT ?>admin/posts" class="btn btn-success my-3">Administation des Articles</a>
 <a href="<?= HREF_ROOT ?>admin/tags" class="btn btn-success my-3">Administation des tags</a>
 
 <table class="table">
