@@ -19,14 +19,14 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($params['posts'] as $post) : ?>
+        <?php foreach ($params['media'] as $media) : ?>
             <tr>
-                <th scope="row"><?= $post->id ?></th>
-                <td><?= $post->title ?></td>
-                <td><?= $post->getCreatedAt() ?></td>
+                <th scope="row"><?= $media->id ?></th>
+                <td><?= $media->title ?></td>
+                <td><?= $media->getCreatedAt() ?></td>
                 <td>
-                    <a href="<?= HREF_ROOT ?>admin/media/edit/<?= $post->id ?>" class="btn btn-warning">Modifier</a>
-                    <form action="<?= HREF_ROOT ?>admin/media/delete/<?= $post->id ?>" method="POST" class="d-inline">
+                    <a href="<?= HREF_ROOT ?>admin/media/edit/<?= $media->id ?>" class="btn btn-warning">Modifier</a>
+                    <form action="<?= HREF_ROOT ?>admin/media/delete/<?= $media->id ?>" method="POST" class="d-inline">
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
                 </td>

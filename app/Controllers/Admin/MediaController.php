@@ -17,9 +17,25 @@ class MediaController extends Controller
         // verifirer si on est connectée en tant qu'administrateur
         $this->isAdmin();
 
-        $posts = (new Media($this->getDB()))->all();
+        $media = (new Media($this->getDB()))->all();
 
         return $this->view('admin.media.index', compact('media'));
+    }
+
+        /**
+     * Summary of Create
+     * @return void
+     */
+    public function create()
+    {
+        // verifirer si on est connectée en tant qu'administrateur
+        $this->isAdmin();
+
+        // créer un nouveau instance tag et tous indexer
+        $media = (new Media($this->getDB()))->all();
+
+        // retourne le résultat de l'affiche sur 'admin.tags.form'
+        return $this->view('admin.media.form');
     }
 
     /**
