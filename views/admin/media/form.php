@@ -28,9 +28,9 @@ function submitPostLink()
         <input type="text" class="form-control" name="alt_text" id="alt_text" value="<?= $params['media']->name ?? '' ?>">
     </div>
     <div class="form-group">
-        <label for="title">Text</label>
+        <label for="title">Nom du fichier</label>
         <input type="text" class="form-control" name="filename_media" id="filename_media" value="<?= $params['media']->name ?? '' ?>">
     </div>
-    <button type="submit"  class="btn btn-primary"><?= isset($params['media']) ? "Enregistrer les modifications" : "Enregistrer mon tag" ?></button>
+    <button type="submit"  class="btn btn-primary"><?= isset($params['media']) ? "Enregistrer les modifications" : "Enregistrer mon media" ?></button>
     
 </form>
