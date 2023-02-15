@@ -43,6 +43,12 @@ $router->post('/admin/tags/delete/:id', 'App\Controllers\Admin\TagController@des
 $router->get('/admin/tags/edit/:id', 'App\Controllers\Admin\TagController@edit');
 $router->post('/admin/tags/edit/:id', 'App\Controllers\Admin\TagController@update');
 
+$router->get('/admin/media', 'App\Controllers\Admin\MediaController@index');
+$router->get('/admin/media/create', 'App\Controllers\Admin\MediaController@create');
+$router->post('/admin/media/create', 'App\Controllers\Admin\MediaController@createTag');
+$router->post('/admin/media/delete/:id', 'App\Controllers\Admin\MediaController@destroy');
+$router->get('/admin/media/edit/:id', 'App\Controllers\Admin\MediaController@edit');
+$router->post('/admin/media/edit/:id', 'App\Controllers\Admin\MediaController@update');
 
 try {
     $router->run();
