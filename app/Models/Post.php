@@ -92,14 +92,14 @@ class Post extends Model {
 
         // pour chaque relation  ajouter un lien avec le tag
         foreach ($relations as $tagId) {
-            $stmt = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
-            $stmt->execute([$id, $tagId]);
+            $stmtTags = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
+            $stmtTags->execute([$id, $tagId]);
         }
 
         // pour chaque relation  ajouter un lien avec le media
         foreach ($relations as $mediaId) {
-            $stmt = $this->db->getPDO()->prepare("INSERT post_media (post_id, med_id) VALUES (?, ?)");
-            $stmt->execute([$id, $mediaId]);
+            $stmtMedia = $this->db->getPDO()->prepare("INSERT post_media (post_id, med_id) VALUES (?, ?)");
+            $stmtMedia->execute([$id, $mediaId]);
         }
 
         // renvoie que c'est fait
@@ -120,15 +120,15 @@ class Post extends Model {
 
         // $stmt = $this->db->getPDO()->prepare("DELETE FROM post_tag WHERE post_id = ?");
         // $result = $stmt->execute([$id]);
-        $stmtTag = $this->db->getPDO()->prepare("DELETE FROM post_tag WHERE post_id = ?");
-        $resultTag = $stmtTag->execute([$id]);
+        $stmtTags = $this->db->getPDO()->prepare("DELETE FROM post_tag WHERE post_id = ?");
+        $resultTags = $stmtTags->execute([$id]);
 
         // pour chaque relation  à modifier un lien avec le tag
         foreach ($relations as $tagId) {
             // $stmt = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
             // $stmt->execute([$id, $tagId]);
-            $stmtTag = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
-            $stmtTag->execute([$id, $tagId]);
+            $stmtTags = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
+            $stmtTags->execute([$id, $tagId]);
         }
 
         $stmtMedia = $this->db->getPDO()->prepare("DELETE FROM post_media WHERE post_id = ?");
@@ -144,7 +144,7 @@ class Post extends Model {
         // if ($result) {
         //     return true;
         // }
-        if ($resultTag && $resultMedia) {
+        if ($resultTags && $resultMedia) {
             return true;
         }
 
