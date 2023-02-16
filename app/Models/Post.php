@@ -96,6 +96,12 @@ class Post extends Model {
             $stmt->execute([$id, $tagId]);
         }
 
+        // pour chaque relation  ajouter un lien avec le media
+        foreach ($relations as $mediaId) {
+            $stmt = $this->db->getPDO()->prepare("INSERT post_media (post_id, med_id) VALUES (?, ?)");
+            $stmt->execute([$id, $mediaId]);
+        }
+
         // renvoie que c'est fait
         return true;
     }
@@ -112,17 +118,33 @@ class Post extends Model {
         // selectionne le post à modifier
         parent::update($id, $data);
 
-        $stmt = $this->db->getPDO()->prepare("DELETE FROM post_tag WHERE post_id = ?");
-        $result = $stmt->execute([$id]);
+        // $stmt = $this->db->getPDO()->prepare("DELETE FROM post_tag WHERE post_id = ?");
+        // $result = $stmt->execute([$id]);
+        $stmtTag = $this->db->getPDO()->prepare("DELETE FROM post_tag WHERE post_id = ?");
+        $resultTag = $stmtTag->execute([$id]);
 
         // pour chaque relation  à modifier un lien avec le tag
         foreach ($relations as $tagId) {
-            $stmt = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
-            $stmt->execute([$id, $tagId]);
+            // $stmt = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
+            // $stmt->execute([$id, $tagId]);
+            $stmtTag = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
+            $stmtTag->execute([$id, $tagId]);
         }
 
+        $stmtMedia = $this->db->getPDO()->prepare("DELETE FROM post_media WHERE post_id = ?");
+        $resultMedia = $stmtMedia->execute([$id]);
+
+        // pour chaque relation  à modifier un lien avec le media
+        foreach ($relations as $mediaId) {
+            $stmtMedia = $this->db->getPDO()->prepare("INSERT post_media (post_id, med_id) VALUES (?, ?)");
+            $stmtMedia->execute([$id, $mediaId]);
+        }
+        
         // si c'est executé envoyer que c'est fait
-        if ($result) {
+        // if ($result) {
+        //     return true;
+        // }
+        if ($resultTag && $resultMedia) {
             return true;
         }
 

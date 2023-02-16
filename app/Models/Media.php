@@ -28,15 +28,6 @@ class Media extends Model
         // créer un post
         parent::create($data);
 
-        // attribuer un id puis le mettre sur le deriner de la liste
-        $id = $this->db->getPDO()->lastInsertId();
-
-        // pour chaque relation  ajouter un lien avec le media
-        foreach ($relations as $mediaId) {
-            $stmt = $this->db->getPDO()->prepare("INSERT post_media (post_id, med_id) VALUES (?, ?)");
-            $stmt->execute([$id, $mediaId]);
-        }
-
         // renvoie que c'est fait
         return true;
     }
@@ -50,22 +41,11 @@ class Media extends Model
      */
     public function update(int $id, mixed $data, ?array $relations = null)
     {
-        // selectionne le post à modifier
+        // modifie le media
         parent::update($id, $data);
 
-        $stmt = $this->db->getPDO()->prepare("DELETE FROM post_media WHERE post_id = ?");
-        $result = $stmt->execute([$id]);
-
-        // pour chaque relation  à modifier un lien avec le media
-        foreach ($relations as $mediaId) {
-            $stmt = $this->db->getPDO()->prepare("INSERT post_media (post_id, med_id) VALUES (?, ?)");
-            $stmt->execute([$id, $mediaId]);
-        }
-
-        // si c'est executé envoyer que c'est fait
-        if ($result) {
-            return true;
-        }
+        // un fois effectuer envoie le résultat que c'est fait
+        return true;
     }
 
     /**
