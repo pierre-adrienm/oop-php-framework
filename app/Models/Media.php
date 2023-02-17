@@ -25,7 +25,7 @@ class Media extends Model
      */
     public function create(array $data, ?array $relations = null)
     {
-        // créer un post
+        // créer un media
         parent::create($data);
 
         // renvoie que c'est fait

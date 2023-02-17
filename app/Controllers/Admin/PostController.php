@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\Media;
 
 class PostController extends Controller {
 
@@ -37,6 +38,20 @@ class PostController extends Controller {
     }
 
     /**
+     * Summary of createMedia
+     * @return void
+     */
+    public function createMedia()
+    {
+        // verifirer si on est connectée en tant qu'administrateur
+        $this->isAdmin();
+
+        $media =(new Media($this->getDB()))->all();
+
+        return $this->view('admin.media.form', compact('media'));
+    }
+
+    /**
      * Summary of createPost
      * @return void
      */
@@ -49,10 +64,16 @@ class PostController extends Controller {
         $post = new Post($this->getDB());
 
         $tags = array_pop($_POST);
+        $media = array_pop($_POST);
 
-        $result = $post->create($_POST, $tags);
+        // $result = $post->create($_POST, $tags);
+        $resultTags = $post->create($_POST, $tags);
+        $resultMedia = $post->create($_POST, $media);
 
-        if ($result) {
+        // if ($result) {
+        //     return header('Location:'.HREF_ROOT.'admin/posts');
+        // }
+        if ($resultTags && $resultMedia) {
             return header('Location:'.HREF_ROOT.'admin/posts');
         }
     }
