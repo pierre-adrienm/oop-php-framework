@@ -22,7 +22,7 @@ class MediaController extends Controller
         return $this->view('admin.media.index', compact('media'));
     }
 
-        /**
+    /**
      * Summary of Create
      * @return void
      */
@@ -56,6 +56,31 @@ class MediaController extends Controller
 
         if ($result) {
             return header('Location:'.HREF_ROOT.'admin/media');
+        }
+    }
+
+    /**
+     * Summary of UdpateMedia
+     * @param int $id
+     * @return void
+     */
+    public function update(int $id)
+    {
+        // verifirer si on est connectée en tant qu'administrateur
+        $this->isAdmin();
+
+        // créer un nouveau instant de tag
+        $media = new Media($this->getDB());
+
+        // var_dump("PostController update:",$_POST);
+       // var_dump("PostController update:",$_POST, $tags);
+
+        // mondifier le media est attribée à la variable $result
+        $result = $media->update($id, $_POST);
+
+        // si le media est modifier retourner le résultat sur 'admin/media'
+        if ($result) {
+            return header('Location: '.HREF_ROOT.'admin/media');
         }
     }
 
