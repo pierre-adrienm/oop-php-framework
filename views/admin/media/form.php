@@ -18,7 +18,7 @@ function submitPostLink()
 // var_dump($params);
 // echo "</pre>";
 ?>
-<form method="POST" name="postlink" action="<?= isset($params['media']) ? HREF_ROOT."admin/media/edit/{$params['media']->id}" :  "../../admin/tags/create" ?>" >
+<form method="POST" name="postlink" action="<?= isset($params['media']) ? HREF_ROOT."admin/media/edit/{$params['media']->id}" :  "../../admin/media/create" ?>" >
     <div class="form-group">
         <label for="title">Nom</label>
         <input type="text" class="form-control" name="name_media" id="name_media" value="<?= $params['media']->name ?? '' ?>">
