@@ -50,13 +50,31 @@ class MediaController extends Controller
         // créer un nouveau media
         $media = new Media($this->getDB());
 
-        $tags = array_pop($_POST);
-
-        $result = $media->create($_POST, $tags);
+        $result = $media->create($_POST);
 
         if ($result) {
             return header('Location:'.HREF_ROOT.'admin/media');
         }
+    }
+
+    /**
+     * Summary of edit
+     * @param int $id
+     * @return void
+     */
+    public function edit(int $id)
+    {
+       // var_dump("Model edit:", $id);
+       // verifirer si on est connectée en tant qu'administrateur 
+       $this->isAdmin();
+
+        // créer un nouveau instance de tag est retourver pour un id
+        $media = (new Media($this->getDB()))->findById($id);
+        
+        //var_dump("Model edit:", $post);
+        //var_dump("Model edit:", $tags);
+        // retourner le vue des tags sur 'admin.tags.form'
+        return $this->view('admin.media.form', compact('media'));
     }
 
     /**
