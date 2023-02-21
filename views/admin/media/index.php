@@ -26,8 +26,8 @@
                 <td><?= $media->alt_text ?></td>
                 <td><?= $media->filename_media ?></td>
                 <td>
-                    <a href="<?= HREF_ROOT ?>admin/media/edit/<?= $media->id ?>" class="btn btn-warning">Modifier</a>
-                    <form action="<?= HREF_ROOT ?>admin/media/delete/<?= $media->id ?>" method="POST" class="d-inline">
+                    <a href="<?= HREF_ROOT ?>admin/media/edit/<?= $media->med_id ?>" class="btn btn-warning">Modifier</a>
+                    <form action="<?= HREF_ROOT ?>admin/media/delete/<?= $media->med_id ?>" method="POST" class="d-inline">
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
                 </td>
