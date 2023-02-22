@@ -24,7 +24,7 @@ $router->get('/', 'App\Controllers\BlogController@welcome');
 $router->get('/posts', 'App\Controllers\BlogController@index');
 $router->get('/posts/:id', 'App\Controllers\BlogController@show');
 $router->get('/tags/:id', 'App\Controllers\BlogController@tag');
-$router->get('/media/:id', 'App\Controllers\BlogController@media');
+$router->get('/medias/:id', 'App\Controllers\BlogController@media');
 
 
 $router->get('/login', 'App\Controllers\UserController@login');
@@ -45,12 +45,12 @@ $router->post('/admin/tags/delete/:id', 'App\Controllers\Admin\TagController@des
 $router->get('/admin/tags/edit/:id', 'App\Controllers\Admin\TagController@edit');
 $router->post('/admin/tags/edit/:id', 'App\Controllers\Admin\TagController@update');
 
-$router->get('/admin/media', 'App\Controllers\Admin\MediaController@index');
-$router->get('/admin/media/create', 'App\Controllers\Admin\MediaController@create');
-$router->post('/admin/media/create', 'App\Controllers\Admin\MediaController@createMedia');
-$router->post('/admin/media/delete/:id', 'App\Controllers\Admin\MediaController@destroy');
-$router->get('/admin/media/edit/:id', 'App\Controllers\Admin\MediaController@edit');
-$router->post('/admin/media/edit/:id', 'App\Controllers\Admin\MediaController@update');
+$router->get('/admin/medias', 'App\Controllers\Admin\MediaController@index');
+$router->get('/admin/medias/create', 'App\Controllers\Admin\MediaController@create');
+$router->post('/admin/medias/create', 'App\Controllers\Admin\MediaController@createMedia');
+$router->post('/admin/medias/delete/:id', 'App\Controllers\Admin\MediaController@destroy');
+$router->get('/admin/medias/edit/:id', 'App\Controllers\Admin\MediaController@edit');
+$router->post('/admin/medias/edit/:id', 'App\Controllers\Admin\MediaController@update');
 
 try {
     $router->run();

@@ -4,7 +4,7 @@
     <div class="alert alert-success">Vous êtes connecté!</div>
 <?php endif ?>
 
-<a href="<?= HREF_ROOT ?>admin/media/create" class="btn btn-success my-3">Créer un nouveau media</a>
+<a href="<?= HREF_ROOT ?>admin/medias/create" class="btn btn-success my-3">Créer un nouveau media</a>
 <a href="<?= HREF_ROOT ?>admin/posts" class="btn btn-success my-3">Administation des Articles</a>
 <a href="<?= HREF_ROOT ?>admin/tags" class="btn btn-success my-3">Administation des tags</a>
 
@@ -26,8 +26,8 @@
                 <td><?= $media->alt_text ?></td>
                 <td><?= $media->filename_media ?></td>
                 <td>
-                    <a href="<?= HREF_ROOT ?>admin/media/edit/<?= $media->id ?>" class="btn btn-warning">Modifier</a>
-                    <form action="<?= HREF_ROOT ?>admin/media/delete/<?= $media->id ?>" method="POST" class="d-inline">
+                    <a href="<?= HREF_ROOT ?>admin/medias/edit/<?= $media->id ?>" class="btn btn-warning">Modifier</a>
+                    <form action="<?= HREF_ROOT ?>admin/medias/delete/<?= $media->id ?>" method="POST" class="d-inline">
                         <button type="submit" class="btn btn-danger">Supprimer</button>
                     </form>
                 </td>

@@ -17,9 +17,9 @@ class MediaController extends Controller
         // verifirer si on est connectée en tant qu'administrateur
         $this->isAdmin();
 
-        $media = (new Media($this->getDB()))->all();
+        $medias = (new Media($this->getDB()))->all();
 
-        return $this->view('admin.media.index', compact('media'));
+        return $this->view('admin.medias.index', compact('medias'));
     }
 
     /**
@@ -32,10 +32,10 @@ class MediaController extends Controller
         $this->isAdmin();
 
         // créer un nouveau instance tag et tous indexer
-        $media = (new Media($this->getDB()))->all();
+        $medias = (new Media($this->getDB()))->all();
 
         // retourne le résultat de l'affiche sur 'admin.tags.form'
-        return $this->view('admin.media.form');
+        return $this->view('admin.medias.form',compact('medias'));
     }
 
     /**
@@ -48,12 +48,12 @@ class MediaController extends Controller
         $this->isAdmin();
 
         // créer un nouveau media
-        $media = new Media($this->getDB());
+        $medias = new Media($this->getDB());
 
-        $result = $media->create($_POST);
+        $result = $medias->create($_POST);
 
         if ($result) {
-            return header('Location:'.HREF_ROOT.'admin/media');
+            return header('Location:'.HREF_ROOT.'admin/medias');
         }
     }
 
@@ -69,12 +69,12 @@ class MediaController extends Controller
        $this->isAdmin();
 
         // créer un nouveau instance de tag est retourver pour un id
-        $media = (new Media($this->getDB()))->findById($id);
+        $medias = (new Media($this->getDB()))->findById($id);
         
         //var_dump("Model edit:", $post);
         //var_dump("Model edit:", $tags);
         // retourner le vue des tags sur 'admin.tags.form'
-        return $this->view('admin.media.form', compact('media'));
+        return $this->view('admin.medias.form', compact('medias'));
     }
 
     /**
@@ -98,7 +98,7 @@ class MediaController extends Controller
 
         // si le media est modifier retourner le résultat sur 'admin/media'
         if ($result) {
-            return header('Location: '.HREF_ROOT.'admin/media');
+            return header('Location: '.HREF_ROOT.'admin/medias');
         }
     }
 
@@ -118,7 +118,7 @@ class MediaController extends Controller
 
         // si c'est supprimé retourne le résultat sur la page 'admin/post'
         if ($result) {
-            return header('Location: '.HREF_ROOT.'admin/media');
+            return header('Location: '.HREF_ROOT.'admin/medias');
         }
     }
 }

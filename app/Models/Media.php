@@ -8,16 +8,6 @@ class Media extends Model
     protected $table= 'media';
 
     /**
-     * Summary of getMedia
-     * @return mixed
-     */
-    public function getMedia()
-    {
-        // retourne résultat de la séléction du tableau media
-        return $this->query("SELECT * FROM media",[$this->id]);
-    }
-
-    /**
      * Summary of create
      * @param array $data
      * @param array|null $relations
@@ -48,15 +38,4 @@ class Media extends Model
         return true;
     }
 
-    /**
-     * Summary of getButton
-     * @return string
-     */
-    public function getButton(): string
-    {
-        return '<a href="'.HREF_ROOT.'media/'.$this->id.'" class="btn btn-primary">Lire l media</a>';
-        // return <<<HTML
-        // <a href="http://localhost/oop-php-framework/posts/$this->id" class="btn btn-primary">Lire l'article</a>
-        // HTML;
-    }
 }

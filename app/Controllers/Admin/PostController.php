@@ -46,9 +46,9 @@ class PostController extends Controller {
         // verifirer si on est connectée en tant qu'administrateur
         $this->isAdmin();
 
-        $media =(new Media($this->getDB()))->all();
+        $medias =(new Media($this->getDB()))->all();
 
-        return $this->view('admin.media.form', compact('media'));
+        return $this->view('admin.medias.form', compact('medias'));
     }
 
     /**
@@ -63,17 +63,13 @@ class PostController extends Controller {
         // créer un nouveau post
         $post = new Post($this->getDB());
 
+        $medias = array_pop($_POST);
         $tags = array_pop($_POST);
-        $media = array_pop($_POST);
+        
 
-        // $result = $post->create($_POST, $tags);
-        $resultTags = $post->create($_POST, $tags);
-        $resultMedia = $post->create($_POST, $media);
+        $result = $post->create($_POST, compact('tags','medias'));
 
-        // if ($result) {
-        //     return header('Location:'.HREF_ROOT.'admin/posts');
-        // }
-        if ($resultTags && $resultMedia) {
+        if ($result) {
             return header('Location:'.HREF_ROOT.'admin/posts');
         }
     }
@@ -92,11 +88,12 @@ class PostController extends Controller {
         // créer une nouvelle instant de post et de tag
         $post = (new Post($this->getDB()))->findById($id);
         $tags = (new Tag($this->getDB()))->all();
+        $medias = (new Media($this->getDB()))->all();
         
         //var_dump("Model edit:", $post);
         //var_dump("Model edit:", $tags);
         // retourner le résulta de la vue de post et de tags
-        return $this->view('admin.post.form', compact('post', 'tags'));
+        return $this->view('admin.post.form', compact('post', 'tags','medias'));
         //return $this->view('admin.post.form', compact('post'));
     }
 
@@ -112,6 +109,7 @@ class PostController extends Controller {
 
         // créer une nouvelle instance de post
         $post = new Post($this->getDB());
+        $medias = array_pop($_POST);
 
         // var_dump("PostController update:",$_POST);
         // retourne de déplie la dernière valeur de $_POST et attribue à la variable $tags
@@ -119,7 +117,7 @@ class PostController extends Controller {
        // var_dump("PostController update:",$_POST, $tags);
 
         // modifie le post à modifier et attribue à la variable $post
-        $result = $post->update($id, $_POST, $tags);
+        $result = $post->update($id, $_POST, compact('post','tags','medias'));
 
         // si c'est modifier retourne le résultat sur la page 'admin/posts'
         if ($result) {
