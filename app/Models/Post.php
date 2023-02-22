@@ -71,7 +71,7 @@ class Post extends Model {
         // return $tag->getPosts();
         return $this->query("
             SELECT t.* FROM media t
-            INNER JOIN post_media pt ON pt.med_id = t.id
+            INNER JOIN post_media pt ON pt.med_id = m.id
             WHERE pt.post_id = ?
         ", [$this->id]);
     }
