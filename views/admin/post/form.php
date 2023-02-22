@@ -11,6 +11,8 @@ function submitPostLink()
 // var_dump($_REQUEST);
 // $_REQUEST['url'] = "http://localhost/".$_REQUEST['url'];
 // var_dump($_REQUEST);
+var_dump($params['tags']);
+echo "<br>";
 var_dump($params['media']);
 ?>
 
