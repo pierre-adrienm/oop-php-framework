@@ -11,6 +11,7 @@ function submitPostLink()
 // var_dump($_REQUEST);
 // $_REQUEST['url'] = "http://localhost/".$_REQUEST['url'];
 // var_dump($_REQUEST);
+var_dump($params['media']);
 ?>
 
 <form method="POST" name="postlink" action="<?= isset($params['post']) ? HREF_ROOT."admin/posts/edit/{$params['post']->id}" :  "../../admin/posts/create" ?>" >
@@ -46,7 +47,7 @@ function submitPostLink()
                     echo ($media->id === $postMedia->id) ? 'selected' : '';
                 }
                 ?>
-                <?php endif ?>><?= $media->name ?></option>
+                <?php endif ?>><?= $media->name_media ?></option>
             <?php endforeach ?>
         </select>
     </div>
