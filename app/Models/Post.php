@@ -70,8 +70,8 @@ class Post extends Model {
 
         // return $tag->getPosts();
         return $this->query("
-            SELECT t.* FROM media t
-            INNER JOIN post_media pt ON pt.med_id = m.id
+            SELECT t.* FROM medias t
+            INNER JOIN post_media pt ON pt.media_id = m.id
             WHERE pt.post_id = ?
         ", [$this->id]);
     }
@@ -136,7 +136,7 @@ class Post extends Model {
 
         // pour chaque relation  à modifier un lien avec le media
         foreach ($relations as $mediaId) {
-            $stmtMedia = $this->db->getPDO()->prepare("INSERT post_media (post_id, med_id) VALUES (?, ?)");
+            $stmtMedia = $this->db->getPDO()->prepare("INSERT post_media (post_id, media_id) VALUES (?, ?)");
             $stmtMedia->execute([$id, $mediaId]);
         }
         

@@ -5,7 +5,7 @@ namespace App\Models;
 class Media extends Model
 {
 
-    protected $table= 'media';
+    protected $table= 'medias';
 
     /**
      * Summary of create
