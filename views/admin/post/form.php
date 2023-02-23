@@ -54,7 +54,7 @@ function submitPostLink()
                     echo ($media->id === $postMedia->id) ? 'selected' : '';
                 }
                 ?>
-                <?php endif ?>><?= $media->id ?></option>
+                <?php endif ?>><?= $media->name_media ?></option>
             <?php endforeach ?>
         </select>
     </div>
