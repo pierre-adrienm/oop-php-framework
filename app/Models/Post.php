@@ -64,15 +64,15 @@ class Post extends Model {
      * A Remplacer par  Models/Media.php
      * @return mixed
      */
-    public function getMedia()
+    public function getMedias()
     {
         //  $media = new Media($this->db);
 
         // return $tag->getPosts();
         return $this->query("
-            SELECT t.* FROM medias t
-            INNER JOIN post_media pt ON pt.media_id = m.id
-            WHERE pt.post_id = ?
+            SELECT m.* FROM medias m
+            INNER JOIN post_media pm ON pm.media_id = m.id
+            WHERE pm.post_id = ?
         ", [$this->id]);
     }
 
@@ -91,14 +91,14 @@ class Post extends Model {
         $id = $this->db->getPDO()->lastInsertId();
 
         // pour chaque relation  ajouter un lien avec le tag
-        foreach ($relations as $tagId) {
+        foreach ($relations['tags'] as $tagId) {
             $stmtTags = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
             $stmtTags->execute([$id, $tagId]);
         }
 
         // pour chaque relation  ajouter un lien avec le media
-        foreach ($relations as $mediaId) {
-            $stmtMedia = $this->db->getPDO()->prepare("INSERT post_media (post_id, med_id) VALUES (?, ?)");
+        foreach ($relations['medias'] as $mediaId) {
+            $stmtMedia = $this->db->getPDO()->prepare("INSERT post_media (post_id, media_id) VALUES (?, ?)");
             $stmtMedia->execute([$id, $mediaId]);
         }
 
@@ -124,7 +124,7 @@ class Post extends Model {
         $resultTags = $stmtTags->execute([$id]);
 
         // pour chaque relation  à modifier un lien avec le tag
-        foreach ($relations as $tagId) {
+        foreach ($relations['tags'] as $tagId) {
             // $stmt = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
             // $stmt->execute([$id, $tagId]);
             $stmtTags = $this->db->getPDO()->prepare("INSERT post_tag (post_id, tag_id) VALUES (?, ?)");
@@ -135,7 +135,7 @@ class Post extends Model {
         $resultMedia = $stmtMedia->execute([$id]);
 
         // pour chaque relation  à modifier un lien avec le media
-        foreach ($relations as $mediaId) {
+        foreach ($relations['medias'] as $mediaId) {
             $stmtMedia = $this->db->getPDO()->prepare("INSERT post_media (post_id, media_id) VALUES (?, ?)");
             $stmtMedia->execute([$id, $mediaId]);
         }

@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($params['media'] as $media) : ?>
+        <?php foreach ($params['medias'] as $media) : ?>
             <tr>
                 <th scope="row"><?= $media->id ?></th>
                 <td><?= $media->name_media ?></td>

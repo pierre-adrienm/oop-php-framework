@@ -34,8 +34,8 @@ class MediaController extends Controller
         // créer un nouveau instance tag et tous indexer
         $medias = (new Media($this->getDB()))->all();
 
-        // retourne le résultat de l'affiche sur 'admin.tags.form'
-        return $this->view('admin.medias.form',compact('medias'));
+        // retourne le résultat de l'affiche sur 'admin.medias.form'
+        return $this->view('admin.medias.form');
     }
 
     /**
@@ -88,13 +88,13 @@ class MediaController extends Controller
         $this->isAdmin();
 
         // créer un nouveau instant de tag
-        $media = new Media($this->getDB());
+        $medias = new Media($this->getDB());
 
         // var_dump("PostController update:",$_POST);
        // var_dump("PostController update:",$_POST, $tags);
 
         // mondifier le media est attribée à la variable $result
-        $result = $media->update($id, $_POST);
+        $result = $medias->update($id, $_POST);
 
         // si le media est modifier retourner le résultat sur 'admin/media'
         if ($result) {

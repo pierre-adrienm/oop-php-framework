@@ -33,22 +33,9 @@ class PostController extends Controller {
         $this->isAdmin();
 
         $tags = (new Tag($this->getDB()))->all();
+		$medias = (new Media($this->getDB()))->all();
+        return $this->view('admin.post.form', compact('tags', 'medias'));
 
-        return $this->view('admin.post.form', compact('tags'));
-    }
-
-    /**
-     * Summary of createMedia
-     * @return void
-     */
-    public function createMedia()
-    {
-        // verifirer si on est connectée en tant qu'administrateur
-        $this->isAdmin();
-
-        $medias =(new Media($this->getDB()))->all();
-
-        return $this->view('admin.medias.form', compact('medias'));
     }
 
     /**
@@ -67,7 +54,7 @@ class PostController extends Controller {
         $tags = array_pop($_POST);
         
 
-        $result = $post->create($_POST, compact('tags','medias'));
+        $result = $post->create($_POST, compact('tags', 'medias'));
 
         if ($result) {
             return header('Location:'.HREF_ROOT.'admin/posts');
@@ -109,10 +96,11 @@ class PostController extends Controller {
 
         // créer une nouvelle instance de post
         $post = new Post($this->getDB());
-        $medias = array_pop($_POST);
+        
 
         // var_dump("PostController update:",$_POST);
         // retourne de déplie la dernière valeur de $_POST et attribue à la variable $tags
+		$medias = array_pop($_POST);
         $tags = array_pop($_POST);
        // var_dump("PostController update:",$_POST, $tags);
 

@@ -14,7 +14,7 @@ function submitPostLink()
 // var_dump($params);
 // var_dump($params['tags']);
 // echo "<br>";
-// var_dump($params['media']);
+// var_dump($params['medias']);
 ?>
 
 <form method="POST" name="postlink" action="<?= isset($params['post']) ? HREF_ROOT."admin/posts/edit/{$params['post']->id}" :  "../../admin/posts/create" ?>" >
@@ -40,17 +40,21 @@ function submitPostLink()
             <?php endforeach ?>
         </select>
     </div>
+
+    <?php 
+    //var_dump($params); die();
+    ?>
     <div class="form-group">
         <label for="medias">Media de l'article</label>
         <select multiple class="form-control" id="medias" name="medias[]">
             <?php foreach ($params['medias'] as $media) : ?>
                 <option value="<?= $media->id ?>"
                 <?php if (isset($params['post'])) : ?>
-                <?php foreach ($params['post']->getMedia() as $postMedia) {
+                <?php foreach ($params['post']->getMedias() as $postMedia) {
                     echo ($media->id === $postMedia->id) ? 'selected' : '';
                 }
                 ?>
-                <?php endif ?>><?= $media->name_media ?></option>
+                <?php endif ?>><?= $media->id ?></option>
             <?php endforeach ?>
         </select>
     </div>

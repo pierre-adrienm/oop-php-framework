@@ -20,7 +20,7 @@ function submitPostLink()
 ?>
 <form method="POST" name="postlink" action="<?= isset($params['medias']) ? HREF_ROOT."admin/medias/edit/{$params['medias']->id}" :  "../../admin/medias/create" ?>" >
     <div class="form-group">
-        <label for="title">Nom</label>
+        <label for="title">Media</label>
         <input type="text" class="form-control" name="name_media" id="name_media" value="<?= $params['medias']->name_media ?? '' ?>">
     </div>
     <div class="form-group">
