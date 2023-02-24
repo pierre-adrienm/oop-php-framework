@@ -13,8 +13,9 @@ function submitPostLink()
 // var_dump($_REQUEST);
 // var_dump($params);
 // var_dump($params['tags']);
-// echo "<br>";
+// echo "<pre>";
 // var_dump($params['medias']);
+// echo "</pre>";
 ?>
 
 <form method="POST" name="postlink" action="<?= isset($params['post']) ? HREF_ROOT."admin/posts/edit/{$params['post']->id}" :  "../../admin/posts/create" ?>" >
