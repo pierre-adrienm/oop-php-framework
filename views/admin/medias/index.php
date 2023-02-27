@@ -12,9 +12,7 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <!-- <th scope="col">Nom</th> -->
             <th scope="col">Texte</th>
-            <!-- <th scope="col">Nom du fichier</th> -->
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -23,8 +21,6 @@
             <tr>
                 <th scope="row"><?= $media->id ?></th>
                 <td><?= $media->name_media ?></td>
-                <!-- <td></*?= $media->alt_text ?*/></td>
-                <td></*?= $media->filename_media ?*/></td> -->
                 <td>
                     <a href="<?= HREF_ROOT ?>admin/medias/edit/<?= $media->id ?>" class="btn btn-warning">Modifier</a>
                     <form action="<?= HREF_ROOT ?>admin/medias/delete/<?= $media->id ?>" method="POST" class="d-inline">
