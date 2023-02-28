@@ -12,7 +12,7 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Texte</th>
+            <th scope="col">Nom</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
