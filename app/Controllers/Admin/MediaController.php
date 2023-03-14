@@ -64,6 +64,7 @@ class MediaController extends Controller
      */
     public function edit(int $id)
     {
+    	if(IS_DEBUG) var_dump('MediaCOntroller edit: ', $id);
        // var_dump("Model edit:", $id);
        // verifirer si on est connectée en tant qu'administrateur 
        $this->isAdmin();
@@ -113,12 +114,35 @@ class MediaController extends Controller
         $this->isAdmin();
 
         // créer une nouvelle instant de Post puis attribué le post à détruire sur la variable $post
-        $post = new Media($this->getDB());
-        $result = $post->destroy($id);
+        $medias = new Media($this->getDB());
+        $result = $medias->destroy($id);
 
         // si c'est supprimé retourne le résultat sur la page 'admin/post'
         if ($result) {
             return header('Location: '.HREF_ROOT.'admin/medias');
         }
+    }
+
+   public function upload()
+    {
+       // var_dump("MediaController upload: ", $_FILES);
+      
+
+        foreach($_FILES['image_uploads']['name'] as $filename){
+            /* Choose where to save the uploaded file */
+            $location = DIR_IMAGES.$filename;
+        }
+
+        /* Save the uploaded files to the local filesystem */
+          /* Get the name of the uploaded file */
+        foreach ($_FILES['image_uploads']['tmp_name'] as $tmp_name) {
+            if (move_uploaded_file($tmp_name, $location)) {
+                echo 'Success upload image';                             
+            } else {
+                echo 'Failure upload image';
+            }
+        }
+
+        return header('Location: '.HREF_ROOT.'admin/posts');    
     }
 }

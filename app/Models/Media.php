@@ -10,16 +10,16 @@ class Media extends Model
     /**
      * Summary of create
      * @param array $data
-     * @param array|null $relations
+     * @param mixed|null $relations
      * @return bool
      */
-    public function create(array $data, ?array $relations = null)
+    public function create(array $data, mixed $relations = null)
     {
         // créer un media
-        parent::create($data);
+        // parent::create($data);
 
         // renvoie que c'est fait
-        return true;
+        // return true;
     }
 
     /**
@@ -32,10 +32,10 @@ class Media extends Model
     public function update(int $id, mixed $data, ?array $relations = null)
     {
         // modifie le media
-        parent::update($id, $data);
+        // parent::update($id, $data);
 
         // un fois effectuer envoie le résultat que c'est fait
-        return true;
+        // return true;
     }
 
 }
