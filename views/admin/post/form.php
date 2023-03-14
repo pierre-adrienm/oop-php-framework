@@ -18,6 +18,9 @@ function submitPostLink()
 // echo "</pre>";
 ?>
 
+<?php if(IS_DEBUG) var_dump('form: ',$params) ?>
+
+
 <form method="POST" name="postlink" action="<?= isset($params['post']) ? HREF_ROOT."admin/posts/edit/{$params['post']->id}" :  "../../admin/posts/create" ?>" >
     <div class="form-group">
         <label for="title">Titre de l'article</label>
@@ -33,12 +36,15 @@ function submitPostLink()
             <?php foreach ($params['tags'] as $tag) : ?>
                 <option value="<?= $tag->id ?>"
                 <?php if (isset($params['post'])) : ?>
+				<?php $isFirst = 0 ?>
                 <?php foreach ($params['post']->getTags() as $postTag) {
                     echo ($tag->id === $postTag->id) ? 'selected' : '';
+					$isFirst++;
                 }
                 ?>
                 <?php endif ?>><?= $tag->name ?></option>
             <?php endforeach ?>
+			<?php if($isFirst == 0){ echo "<option selected>Non Classé</option>"; } ?>
         </select>
     </div>
 
@@ -48,21 +54,69 @@ function submitPostLink()
     <div class="form-group">
         <label for="medias">Media de l'article</label>
         <select multiple class="form-control" id="medias" name="medias[]">
+           <?php $isFirst = 0 ?>
             <?php foreach ($params['medias'] as $media) : ?>
-                <option value="<?= $media->id ?>"
+                
                 <?php if (isset($params['post'])) : ?>
-                <?php foreach ($params['post']->getMedias() as $postMedia) {
-                    echo ($media->id === $postMedia->id) ? 'selected' : '';
+                <?php foreach ($params['post']->getMedias() as $postMedia) 
+                {
+                    if($media->id === $postMedia->id){
+                        $isFirst++;
+                        echo '<option value="'.$postMedia->id.'" selected>';
+                        echo $media->path;
+                        echo '</option>';
+                    }                                       
                 }
                 ?>
-                <?php endif ?>><?= $media->name_media ?></option>
+                <?php endif ?>                
             <?php endforeach ?>
+            <?php if($isFirst == 0) echo "<option selected>No Media</option>"; ?>
         </select>
+    </div>
+    <div class="form-group">
+        <label for="newmedias">Nouveau media de l'article</label>
+            <select multiple class="form-control" id="newmedias" name="newmedias[]">
+               
+           </select>
+    </div>
+ 
+    <div class="form-group">
+    <label class="chooseimage" for="image_uploads">Choose images to upload (PNG, JPG)</label>
+            <input
+            type="file"
+            id="image_uploads"
+            name="image_uploads[]"
+            accept=".jpg, .jpeg, .png"
+            multiple />
+            <div class="preview">
+            </div>
+       
     </div>
     <button type="submit"  class="btn btn-primary"><?= isset($params['post']) ? "Enregistrer les modifications" : "Enregistrer mon article" ?></button>
     
     </form>
 
+
+<!--
+
+    Test séparé du form pour l'enregistrement des images qui appelle directement la route saveimages
+    <form  method="POST" enctype="multipart/form-data" action=<?=HREF_ROOT."/admin/medias/saveimages"?>>
+    <div class="form-group">
+    <label for="image_uploads">Choose images to upload (PNG, JPG)</label>
+            <input
+            type="file"
+            id="image_uploads"
+            name="image_uploads[]"
+            accept=".jpg, .jpeg, .png"
+            multiple />
+            <div class="preview">
+            </div>
+       
+    </div>
+    <button type="submit"class="btn btn-primary"> Save Image(s) </button>
+    </form>
+
+    -->
 
 
 
