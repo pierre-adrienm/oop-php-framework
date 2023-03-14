@@ -6,7 +6,7 @@
 
 <a href="<?= HREF_ROOT ?>admin/tags/create" class="btn btn-success my-3">Créer un nouvel tags</a>
 <a href="<?= HREF_ROOT ?>admin/posts" class="btn btn-success my-3">Administation des Articles</a>
-<a href="<?= HREF_ROOT ?>admin/medias" class="btn btn-success my-3">Administation des media</a>
+<a href="<?= HREF_ROOT ?>admin/medias" class="btn btn-success my-3">Administation des medias</a>
 
 <table class="table">
     <thead>
